@@ -3,37 +3,38 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-
-    public float horizontalInput;
     public float movementSpeed = 10.0f;
     public float horizontalBoundary = 10.0f;
-    public InputActionReference moveReference;
+    public GameObject projectilePrefab;
+
+    public InputActionReference moveAction;
+    public InputActionReference projectileAction;
+
+    public bool space = false;
 
     void Update()
     {
-        horizontalInput = moveReference.action.ReadValue<Vector2>().x;
+        UpdateMove();
+        UpdateShoot();
+    }
 
-        if (horizontalInput < 0 && transform.position.x == -horizontalBoundary)
-        {
-            return;
-        }
+    private void UpdateMove()
+    {
+        var horizontalInput = moveAction.action.ReadValue<Vector2>().x;
 
-        if (horizontalInput > 0 && transform.position.x == horizontalBoundary)
-        {
-            return;
-        }
+        if (horizontalInput == 0) return;
 
-        if (transform.position.x < -horizontalBoundary)
-        {
-            transform.position = new Vector3(-horizontalBoundary, transform.position.y, transform.position.z);
-            return;
-        }
-        else if (transform.position.x > horizontalBoundary)
-        {
-            transform.position = new Vector3(horizontalBoundary, transform.position.y, transform.position.z);
-            return;
-        }
+        float newX = transform.position.x + horizontalInput * movementSpeed * Time.deltaTime;
+        float clampedX = Mathf.Clamp(newX, -horizontalBoundary, horizontalBoundary);
 
-        transform.Translate(movementSpeed * horizontalInput * Time.deltaTime * Vector3.right);
+        transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
+    }
+
+    private void UpdateShoot()
+    {
+        if (projectileAction.action.WasPressedThisFrame())
+        {
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        }
     }
 }
