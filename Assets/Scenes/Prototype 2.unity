@@ -487,7 +487,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 45
-  orthographic: 0
+  orthographic: 1
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
@@ -679,7 +679,6 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3315445238690403768, guid: 4fd3848c0d3b1f84e99e46bcf38f840c, type: 3}
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   projectileAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  space: 0
 --- !u!1 &1590138454
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,7 +802,6 @@ MonoBehaviour:
   - {fileID: 5121424555996094759, guid: b7105efe5116b4e4d872c8af7149ac6a, type: 3}
   - {fileID: 7299263565321163984, guid: 2714b61718ea86048ab5f79b15ee0448, type: 3}
   - {fileID: 7352078977283679574, guid: 483102d947aaa6f41aa98dacfc4801a0, type: 3}
-  spawnAnimalAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!4 &2083174851
 Transform:
   m_ObjectHideFlags: 0

@@ -5,16 +5,14 @@ public class SpawnManager : MonoBehaviour
 {
     private readonly float _spawnRangeX = 20;
     private readonly float _spawnPositionZ = 20;
+    private readonly float _startDelay = 2.0f;
+    private readonly float _spawnInterval = 1.5f;
 
     public GameObject[] animalPrefab;
-    public InputActionReference spawnAnimalAction;
 
-    void Update()
+    private void Start()
     {
-        if (spawnAnimalAction.action.WasPressedThisFrame())
-        {
-            SpawnAnimal();
-        }
+        InvokeRepeating(nameof(SpawnAnimal), _startDelay, _spawnInterval);
     }
 
     private void SpawnAnimal()
