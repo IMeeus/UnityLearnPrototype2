@@ -10,8 +10,6 @@ public class PlayerController : MonoBehaviour
     public InputActionReference moveAction;
     public InputActionReference projectileAction;
 
-    public bool space = false;
-
     void Update()
     {
         UpdateMove();
